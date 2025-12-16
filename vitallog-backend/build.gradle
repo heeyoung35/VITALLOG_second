@@ -1,0 +1,93 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.vitallog'
+version = '0.0.1-SNAPSHOT'
+description = 'VITALLOG'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+
+    // JWT 관련 라이브러리
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    // 내장 톰캣, REST API, MVC 설정이 모두 포함된 완전한 웹 애플리케이션 환경
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // 날짜/ 시간 API 처리용
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    // 메일기능을 위한 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // Langchain 4j
+    implementation "dev.langchain4j:langchain4j-hugging-face:1.9.1-beta17"
+
+    // LangChain4j - Milvus 연동
+    implementation 'dev.langchain4j:langchain4j-milvus:1.9.1-beta17'
+
+    // Testcontainers - Milvus
+    testImplementation 'org.testcontainers:milvus:1.19.6'
+
+    // Google GenAI SDK (Java)
+    implementation 'com.google.genai:google-genai:1.28.0'
+
+    // JSON 처리
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    // 유효성 검증
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // 테스트를 위한 의존성 추가
+    // Mockito JUnit 5 Extension (JUnit 5 환경에서 @ExtendWith(MockitoExtension.class)를 사용하기 위해 필요)
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+
+    // Spring Boot Test Starter (대부분의 Spring Boot 프로젝트에서는 이것만 있어도 Mockito와 JUnit을 사용할 수 있습니다.)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //restTemplate사용
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //프론트 확인
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // 스웨거 설정
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13'
+
+    // 테스트를 위한 필수 의존성
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
